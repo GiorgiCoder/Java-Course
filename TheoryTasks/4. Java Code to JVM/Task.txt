@@ -1,0 +1,66 @@
+JVM (Java Virtual Machine) has the following commands:
+
+int Operators:			NEG, ADD, SUB, MUL, DIV, MOD
+boolean Operators:		NOT, AND, OR
+Comparison Operators:		LESS, LEQ, EQ, NEQ
+Loading of Constants:		CONST i, TRUE, FALSE
+Memory Operations:		LOAD i, STORE i
+Jump Instructions:		JUMP i, FJUMP i
+IO-Instructions:		READ, WRITE
+Allocation of memory:		ALLOC i
+Termination of the Program:    	HALT
+
+Translate the following MiniJava codes into JVM:
+(readInt in MiniJava is like reading inputs with Scanner in Java)
+
+1). 
+
+ 	int n, x, cnt, k;
+        n = readInt();
+        x = readInt();
+        cnt = 0;
+        if (x > n) {
+            x = x + n;
+            n = x - n;
+            x = x - n;
+        }
+
+        while (x < n) {
+            cnt = 0;
+            k = 1;
+            write(x);
+            while (k <= x) {
+                if (x % k == 0)
+                    cnt = cnt + 1;
+                k = k + 1;
+            }
+            write(cnt);
+
+            x = x + 1;
+
+        }
+
+2).
+
+ 	int n, x, cnt, k;
+        n = readInt();
+        x = readInt();
+        cnt = 0;
+        if (x > n) {
+            x = x + n;
+            n = x - n;
+            x = x / n;
+        } else {
+
+            while (k <= x) {
+                if (x % k == 0){
+                    cnt = cnt + 1;
+                    k = k + 1;
+                } else {
+                    k = k * 5;
+                }
+            }
+        }
+
+        write(cnt);
+

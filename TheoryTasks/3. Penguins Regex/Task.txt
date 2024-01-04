@@ -1,0 +1,15 @@
+Penguins can read string of digits and letters in a special forms. Here, we give definitions, what type of strings penguins are able to read. Please, write for each definition the corresponding regular expression.
+
+1. Strings start with 0x or 0X. Subsequenty come arbitrarily many, but at least one digit, i.e., 0 or 1 or … or 9 followed by at least one alphabetic character from set of six alphabetic characters A, B, C, D, E and F.
+
+2. Strings start with 0x or 0X. Subsequenty come arbitrarily many, but at least one digit, i.e., 0 or 1 or … or 9 followed by exactly one alphabetic character from set of six alphabetic characters A, B, C, D, E and F.
+
+3. Strings start with 0x or 0X. Subsequenty come arbitrarily many, but at least one digit, i.e., 0 or 1 or … or 9 followed by maximum one alphabetic character from set of six alphabetic characters A, B, C, D, E and F.
+
+4. Strings start with 0x or 0X. Subsequenty come arbitrarily many, but at least two digits followed by maximum one alphabetic character from set of six alphabetic characters A, B, C, D, E and F.
+
+5. Strings start with 0x and does not end with B. Subsequenty come arbitrarily many, but at least one digit followed by at least one alphabetic character from set of six alphabetic characters A, B, C, D, E and F.
+
+6. Strings start with 0x or 0X and then subsequenty come at least three 0 followed by arbitrary number of digits 0 or 1 or … or 9 followed by arbitrary number of alphabetic character from set of six alphabetic characters A, B, C, D, E and F.
+
+7. Strings start with 0x or 0X and then subsequenty come exactly two 0 and at least two 1 followed by arbitrary number of alphabetic character from set of six alphabetic characters A, B, C, D, E and F.

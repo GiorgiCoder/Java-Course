@@ -1,0 +1,104 @@
+Problem statement:
+
+Create a table and fill in the table of the following columns according to the code below.
+
+- call (the number in the comment)
+- line number (the line number of the call currently under consideration)
+- stat. type (the static type of the object for that the method is called)
+- compatible methods (the line number of all methods which, according to the static type, might be called)
+- statically selected method (the line number of the method that is statically selected)
+- signature (the method signature of the statically selected method, , e.g., f(B))
+- Reason (e.g., most specific signature or unique)
+- dyn. type (the dynamic type of the object for that the method is called)
+- at runtime executed (the line number of the ultimately called method)
+- reason (e.g., static, no dispatch or stat. type = dyn. type)
+- output (the output produced by the call)
+
+
+
+public class Main {
+    static class A {
+        public A() {
+            System.out.println("A()");
+        }
+        public void h() {
+            System.out.println("A.h()");
+        }
+    }
+
+    static class B extends A {
+        public B() {
+            super();
+            System.out.println("B()");
+        }
+        public <S extends B> void f(X<S> x) {
+            System.out.println("B.f(X)");
+            X.g(null);
+        }
+    }
+
+    static class C extends B {
+        public C() {
+            System.out.println("C()");
+        }
+        public void h() {
+            super.h();
+            System.out.println("C.h()");
+        }
+        public void h(B b) {
+            b.h();
+        }
+    }
+
+    static class D extends C {
+        public D() {
+            System.out.println("D()");
+        }
+        public void h() {
+            super.h();
+            System.out.println("D.h()");
+        }
+        public void h(C c) {
+            super.h((B) c);
+        }
+    }
+
+    static class X<S extends B> {
+        public static void g(C c) {
+            System.out.println("X.g(C)");
+        }
+        public void f(S s) {
+            System.out.println("X.f(S)");
+            s.f(this);
+        }
+        public void f(D a) {
+            System.out.println("X.f(D a)");
+            a.h((C) a);
+        }
+    }
+
+    public static void main(String[] args) {
+        A a = new A();
+        A a1 = new B();
+        B b = new B();
+        B b1 = new C();
+        B b2 = new D();
+        C c = new C();
+        D d = new D();
+        X<B> x = new X<B>();
+        A ac = c;
+
+        System.out.println(".........................");
+        b.h();                   // Call 1
+        System.out.println(".........................");
+        d.h();                   // Call 2
+        System.out.println(".........................");
+        ((C)((A)((C) ac))).h();  // Call 3
+        System.out.println(".........................");
+        x.f((B)((C)d));          // Call 4
+        System.out.println(".........................");
+        x.f(new C());            // Call 5
+        System.out.println(".........................");
+        x.f(d);                  // Call 6
+    }
+}
